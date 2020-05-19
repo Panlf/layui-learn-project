@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./layui/css/layui.css">
+  <link rel="stylesheet" href="./base.css">
+  <title>角色</title>
+</head>
+
+<body class="layui-layout-body">
+  <div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+      <div class="layui-logo">layui 后台布局</div>
+      <!-- 头部区域（可配合layui已有的水平导航） -->
+      <ul class="layui-nav layui-layout-left">
+        <li class="layui-nav-item"><a href="">控制台</a></li>
+        <li class="layui-nav-item"><a href="">商品管理</a></li>
+        <li class="layui-nav-item"><a href="">用户</a></li>
+        <li class="layui-nav-item">
+          <a href="javascript:;">其它系统</a>
+          <dl class="layui-nav-child">
+            <dd><a href="">邮件管理</a></dd>
+            <dd><a href="">消息管理</a></dd>
+            <dd><a href="">授权管理</a></dd>
+          </dl>
+        </li>
+      </ul>
+      <ul class="layui-nav layui-layout-right">
+        <li class="layui-nav-item">
+          <a href="javascript:;">
+            <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+            贤心
+          </a>
+          <dl class="layui-nav-child">
+            <dd><a href="">基本资料</a></dd>
+            <dd><a href="">安全设置</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item"><a href="">退了</a></li>
+      </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black">
+      <div class="layui-side-scroll">
+        <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+        <ul class="layui-nav layui-nav-tree" lay-filter="test">
+          <li class="layui-nav-item layui-nav-itemed">
+            <a class="" href="javascript:;">所有商品</a>
+            <dl class="layui-nav-child">
+              <dd><a href="javascript:;">列表一</a></dd>
+              <dd><a href="javascript:;">列表二</a></dd>
+              <dd><a href="javascript:;">列表三</a></dd>
+              <dd><a href="">超链接</a></dd>
+            </dl>
+          </li>
+          <li class="layui-nav-item">
+            <a href="javascript:;">解决方案</a>
+            <dl class="layui-nav-child">
+              <dd><a href="javascript:;">列表一</a></dd>
+              <dd><a href="javascript:;">列表二</a></dd>
+              <dd><a href="">超链接</a></dd>
+            </dl>
+          </li>
+          <li class="layui-nav-item"><a href="">云市场</a></li>
+          <li class="layui-nav-item"><a href="">发布商品</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="layui-body">
+      <!-- 内容主体区域 -->
+      <div style="padding: 15px;">
+
+        <button class="layui-btn layui-btn-normal" id="center-button">居中弹出</button>
+
+
+      </div>
+    </div>
+
+    <div class="layui-footer">
+      <!-- 底部固定区域 -->
+      © layui.com - 底部固定区域
+    </div>
+  </div>
+  <script src="./layui/layui.js"></script>
+  <script>
+    //JavaScript代码区域
+    layui.use(['element', 'layer', 'tree'], function () {
+      var $ = layui.jquery, element = layui.element, layer = layui.layer,
+        tree = layui.tree, util = layui.util
+        //模拟数据
+        , data = [{
+          title: '一级1'
+          , id: 1
+          , field: 'name1'
+          , checked: true
+          , spread: true
+          , children: [{
+            title: '二级1-1 可允许跳转'
+            , id: 3
+            , field: 'name11'
+            , href: 'https://www.layui.com/'
+            , children: [{
+              title: '三级1-1-3'
+              , id: 23
+              , field: ''
+              , children: [{
+                title: '四级1-1-3-1'
+                , id: 24
+                , field: ''
+                , children: [{
+                  title: '五级1-1-3-1-1'
+                  , id: 30
+                  , field: ''
+                }, {
+                  title: '五级1-1-3-1-2'
+                  , id: 31
+                  , field: ''
+                }]
+              }]
+            }, {
+              title: '三级1-1-1'
+              , id: 7
+              , field: ''
+              , children: [{
+                title: '四级1-1-1-1 可允许跳转'
+                , id: 15
+                , field: ''
+                , href: 'https://www.layui.com/doc/'
+              }]
+            }, {
+              title: '三级1-1-2'
+              , id: 8
+              , field: ''
+              , children: [{
+                title: '四级1-1-2-1'
+                , id: 32
+                , field: ''
+              }]
+            }]
+          }, {
+            title: '二级1-2'
+            , id: 4
+            , spread: true
+            , children: [{
+              title: '三级1-2-1'
+              , id: 9
+              , field: ''
+              , disabled: true
+            }, {
+              title: '三级1-2-2'
+              , id: 10
+              , field: ''
+            }]
+          }, {
+            title: '二级1-3'
+            , id: 20
+            , field: ''
+            , children: [{
+              title: '三级1-3-1'
+              , id: 21
+              , field: ''
+            }, {
+              title: '三级1-3-2'
+              , id: 22
+              , field: ''
+            }]
+          }]
+        }, {
+          title: '一级2'
+          , id: 2
+          , field: ''
+          , spread: true
+          , children: [{
+            title: '二级2-1'
+            , id: 5
+            , field: ''
+            , spread: true
+            , children: [{
+              title: '三级2-1-1'
+              , id: 11
+              , field: ''
+            }, {
+              title: '三级2-1-2'
+              , id: 12
+              , field: ''
+            }]
+          }, {
+            title: '二级2-2'
+            , id: 6
+            , field: ''
+            , children: [{
+              title: '三级2-2-1'
+              , id: 13
+              , field: ''
+            }, {
+              title: '三级2-2-2'
+              , id: 14
+              , field: ''
+            }]
+          }]
+        }, {
+          title: '一级3'
+          , id: 16
+          , field: ''
+          , children: [{
+            title: '二级3-1'
+            , id: 17
+            , field: ''
+            , fixed: true
+            , children: [{
+              title: '三级3-1-1'
+              , id: 18
+              , field: ''
+            }, {
+              title: '三级3-1-2'
+              , id: 19
+              , field: ''
+            }]
+          }, {
+            title: '二级3-2'
+            , id: 27
+            , field: ''
+            , children: [{
+              title: '三级3-2-1'
+              , id: 28
+              , field: ''
+            }, {
+              title: '三级3-2-2'
+              , id: 29
+              , field: ''
+            }]
+          }]
+        }]
+
+      //layer.msg('hello');
+      $('#center-button').on('click', function () {
+        //Tree的载体
+        layer.open({
+          type: 1,
+          content: '<div id="test12" class="demo-tree-more"></div>'
+        });
+
+        //渲染Tree
+        tree.render({
+          elem: '#test12'
+          , data: data
+          , showCheckbox: true  //是否显示复选框
+          , id: 'demoId1'
+          , isJump: true //是否允许点击节点时弹出新窗口跳转
+          , click: function (obj) {
+            var data = obj.data;  //获取当前点击的节点数据
+            //layer.msg('状态：'+ obj.state + '<br>节点数据：' + JSON.stringify(data));
+          }
+        });
+      })
+
+    });
+  </script>
+</body>
+
+</html>
