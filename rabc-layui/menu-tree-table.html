@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./layui/css/layui.css">
+  <link rel="stylesheet" href="./base.css">
+  <title>菜单</title>
+</head>
+
+<body class="layui-layout-body">
+  <div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+      <div class="layui-logo">layui 后台布局</div>
+      <!-- 头部区域（可配合layui已有的水平导航） -->
+      <ul class="layui-nav layui-layout-left">
+        <li class="layui-nav-item"><a href="">控制台</a></li>
+        <li class="layui-nav-item"><a href="">商品管理</a></li>
+        <li class="layui-nav-item"><a href="">用户</a></li>
+        <li class="layui-nav-item">
+          <a href="javascript:;">其它系统</a>
+          <dl class="layui-nav-child">
+            <dd><a href="">邮件管理</a></dd>
+            <dd><a href="">消息管理</a></dd>
+            <dd><a href="">授权管理</a></dd>
+          </dl>
+        </li>
+      </ul>
+      <ul class="layui-nav layui-layout-right">
+        <li class="layui-nav-item">
+          <a href="javascript:;">
+            <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+            贤心
+          </a>
+          <dl class="layui-nav-child">
+            <dd><a href="">基本资料</a></dd>
+            <dd><a href="">安全设置</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item"><a href="">退了</a></li>
+      </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black">
+      <div class="layui-side-scroll">
+        <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+        <ul class="layui-nav layui-nav-tree" lay-filter="test">
+          <li class="layui-nav-item layui-nav-itemed">
+            <a class="" href="javascript:;">所有商品</a>
+            <dl class="layui-nav-child">
+              <dd><a href="javascript:;">列表一</a></dd>
+              <dd><a href="javascript:;">列表二</a></dd>
+              <dd><a href="javascript:;">列表三</a></dd>
+              <dd><a href="">超链接</a></dd>
+            </dl>
+          </li>
+          <li class="layui-nav-item">
+            <a href="javascript:;">解决方案</a>
+            <dl class="layui-nav-child">
+              <dd><a href="javascript:;">列表一</a></dd>
+              <dd><a href="javascript:;">列表二</a></dd>
+              <dd><a href="">超链接</a></dd>
+            </dl>
+          </li>
+          <li class="layui-nav-item"><a href="">云市场</a></li>
+          <li class="layui-nav-item"><a href="">发布商品</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="layui-body">
+      <!-- 内容主体区域 -->
+      <div style="padding: 15px;">
+		<table id="demoTreeTb"></table>
+      </div>
+    </div>
+
+    <div class="layui-footer">
+      <!-- 底部固定区域 -->
+      © layui.com - 底部固定区域
+    </div>
+  </div>
+  <script src="./layui/layui.js"></script>
+  <script>
+    //JavaScript代码区域
+    layui.config({
+		base: 'js/'
+	}).use(['treeTable'], function () {
+        var data = [
+    {
+      "authorityId": 2,
+      "authorityName": "用户管理",
+      "orderNumber": 2,
+      "menuUrl": "system/user",
+      "menuIcon": null,
+      "createTime": "2018/06/29 11:05:41",
+      "authority": null,
+      "checked": 0,
+      "updateTime": "2018/07/13 09:13:42",
+      "isMenu": 0,
+      "parentId": 1,
+      "open": true
+    },
+    {
+      "authorityId": 1,
+      "authorityName": "系统管理",
+      "orderNumber": 1,
+      "menuUrl": null,
+      "menuIcon": "layui-icon-set",
+      "createTime": "2018/06/29 11:05:41",
+      "authority": null,
+      "checked": 0,
+      "updateTime": "2018/07/13 09:13:42",
+      "isMenu": 0,
+      "parentId": -1,
+      "open": true
+    },
+    {
+      "authorityId": 3,
+      "authorityName": "查询用户",
+      "orderNumber": 3,
+      "menuUrl": "",
+      "menuIcon": "",
+      "createTime": "2018/07/21 13:54:16",
+      "authority": "user:view",
+      "checked": 0,
+      "updateTime": "2018/07/21 13:54:16",
+      "isMenu": 1,
+      "parentId": 2,
+      "open": true
+    },
+    {
+      "authorityId": 4,
+      "authorityName": "添加用户",
+      "orderNumber": 4,
+      "menuUrl": null,
+      "menuIcon": null,
+      "createTime": "2018/06/29 11:05:41",
+      "authority": "user:add",
+      "checked": 0,
+      "updateTime": "2018/07/13 09:13:42",
+      "isMenu": 1,
+      "parentId": 2,
+      "open": true
+    },
+    {
+      "authorityId": 5,
+      "authorityName": "修改用户",
+      "orderNumber": 5,
+      "menuUrl": null,
+      "menuIcon": null,
+      "createTime": "2018/06/29 11:05:41",
+      "authority": "user:edit",
+      "checked": 0,
+      "updateTime": "2018/07/13 09:13:42",
+      "isMenu": 1,
+      "parentId": 2,
+      "open": true
+    },
+    {
+      "authorityId": 6,
+      "authorityName": "删除用户",
+      "orderNumber": 6,
+      "menuUrl": null,
+      "menuIcon": null,
+      "createTime": "2018/06/29 11:05:41",
+      "authority": "user:delete",
+      "checked": 0,
+      "updateTime": "2018/07/13 09:13:42",
+      "isMenu": 1,
+      "parentId": 2,
+      "open": true
+    },
+    {
+      "authorityId": 7,
+      "authorityName": "角色管理",
+      "orderNumber": 7,
+      "menuUrl": "system/role",
+      "menuIcon": null,
+      "createTime": "2018/06/29 11:05:41",
+      "authority": null,
+      "checked": 0,
+      "updateTime": "2018/07/13 09:13:42",
+      "isMenu": 0,
+      "parentId": 1,
+      "open": true
+    },
+    {
+      "authorityId": 8,
+      "authorityName": "查询角色",
+      "orderNumber": 8,
+      "menuUrl": "",
+      "menuIcon": "",
+      "createTime": "2018/07/21 13:54:59",
+      "authority": "role:view",
+      "checked": 0,
+      "updateTime": "2018/07/21 13:54:58",
+      "isMenu": 1,
+      "parentId": 7,
+      "open": true
+    },
+    {
+      "authorityId": 9,
+      "authorityName": "添加角色",
+      "orderNumber": 9,
+      "menuUrl": "",
+      "menuIcon": "",
+      "createTime": "2018/06/29 11:05:41",
+      "authority": "role:add",
+      "checked": 0,
+      "updateTime": "2018/07/13 09:13:42",
+      "isMenu": 1,
+      "parentId": 7,
+      "open": true
+    },
+    {
+      "authorityId": 10,
+      "authorityName": "修改角色",
+      "orderNumber": 10,
+      "menuUrl": "",
+      "menuIcon": "",
+      "createTime": "2018/06/29 11:05:41",
+      "authority": "role:edit",
+      "checked": 0,
+      "updateTime": "2018/07/13 09:13:42",
+      "isMenu": 1,
+      "parentId": 7,
+      "open": true
+    },
+    {
+      "authorityId": 11,
+      "authorityName": "删除角色",
+      "orderNumber": 11,
+      "menuUrl": "",
+      "menuIcon": "",
+      "createTime": "2018/06/29 11:05:41",
+      "authority": "role:delete",
+      "checked": 0,
+      "updateTime": "2018/07/13 09:13:42",
+      "isMenu": 1,
+      "parentId": 7,
+      "open": true
+    },
+    {
+      "authorityId": 12,
+      "authorityName": "角色权限管理",
+      "orderNumber": 12,
+      "menuUrl": "",
+      "menuIcon": "",
+      "createTime": "2018/06/29 11:05:41",
+      "authority": "role:auth",
+      "checked": 0,
+      "updateTime": "2018/07/13 15:27:18",
+      "isMenu": 1,
+      "parentId": 7,
+      "open": true
+    },
+    {
+      "authorityId": 13,
+      "authorityName": "权限管理",
+      "orderNumber": 13,
+      "menuUrl": "system/authorities",
+      "menuIcon": null,
+      "createTime": "2018/06/29 11:05:41",
+      "authority": null,
+      "checked": 0,
+      "updateTime": "2018/07/13 15:45:13",
+      "isMenu": 0,
+      "parentId": 1,
+      "open": true
+    },
+    {
+      "authorityId": 14,
+      "authorityName": "查询权限",
+      "orderNumber": 14,
+      "menuUrl": "",
+      "menuIcon": "",
+      "createTime": "2018/07/21 13:55:57",
+      "authority": "authorities:view",
+      "checked": 0,
+      "updateTime": "2018/07/21 13:55:56",
+      "isMenu": 1,
+      "parentId": 13,
+      "open": true
+    },
+    {
+      "authorityId": 15,
+      "authorityName": "添加权限",
+      "orderNumber": 15,
+      "menuUrl": "",
+      "menuIcon": "",
+      "createTime": "2018/06/29 11:05:41",
+      "authority": "authorities:add",
+      "checked": 0,
+      "updateTime": "2018/06/29 11:05:41",
+      "isMenu": 1,
+      "parentId": 13,
+      "open": true
+    },
+    {
+      "authorityId": 16,
+      "authorityName": "修改权限",
+      "orderNumber": 16,
+      "menuUrl": "",
+      "menuIcon": "",
+      "createTime": "2018/07/13 09:13:42",
+      "authority": "authorities:edit",
+      "checked": 0,
+      "updateTime": "2018/07/13 09:13:42",
+      "isMenu": 1,
+      "parentId": 13,
+      "open": true
+    },
+    {
+      "authorityId": 17,
+      "authorityName": "删除权限",
+      "orderNumber": 17,
+      "menuUrl": "",
+      "menuIcon": "",
+      "createTime": "2018/06/29 11:05:41",
+      "authority": "authorities:delete",
+      "checked": 0,
+      "updateTime": "2018/06/29 11:05:41",
+      "isMenu": 1,
+      "parentId": 13,
+      "open": true
+    },
+    {
+      "authorityId": 18,
+      "authorityName": "登录日志",
+      "orderNumber": 18,
+      "menuUrl": "system/loginRecord",
+      "menuIcon": null,
+      "createTime": "2018/06/29 11:05:41",
+      "authority": null,
+      "checked": 0,
+      "updateTime": "2018/06/29 11:05:41",
+      "isMenu": 0,
+      "parentId": 1,
+      "open": true
+    },
+    {
+      "authorityId": 19,
+      "authorityName": "查询登录日志",
+      "orderNumber": 19,
+      "menuUrl": "",
+      "menuIcon": "",
+      "createTime": "2018/07/21 13:56:43",
+      "authority": "loginRecord:view",
+      "checked": 0,
+      "updateTime": "2018/07/21 13:56:43",
+      "isMenu": 1,
+      "parentId": 18,
+      "open": true
+    },
+    {
+      "authorityId": 20,
+      "authorityName": "机构管理",
+      "orderNumber": 20,
+      "menuUrl": "system/org",
+      "menuIcon": null,
+      "createTime": "2018/06/29 11:05:41",
+      "authority": null,
+      "checked": 0,
+      "updateTime": "2018/06/29 11:05:41",
+      "isMenu": 1,
+      "parentId": 1,
+      "open": true
+    },
+    {
+      "authorityId": 21,
+      "authorityName": "查询机构",
+      "orderNumber": 21,
+      "menuUrl": "",
+      "menuIcon": "",
+      "createTime": "2018/07/21 13:56:43",
+      "authority": "org:view",
+      "checked": 0,
+      "updateTime": "2018/07/21 13:56:43",
+      "isMenu": 0,
+      "parentId": 20,
+      "open": true
+    },
+    {
+      "authorityId": 22,
+      "authorityName": "添加机构",
+      "orderNumber": 22,
+      "menuUrl": "",
+      "menuIcon": "",
+      "createTime": "2018/07/21 13:56:43",
+      "authority": "org:add",
+      "checked": 0,
+      "updateTime": "2018/07/21 13:56:43",
+      "isMenu": 0,
+      "parentId": 20,
+      "open": true
+    },
+    {
+      "authorityId": 23,
+      "authorityName": "修改机构",
+      "orderNumber": 23,
+      "menuUrl": "",
+      "menuIcon": "",
+      "createTime": "2018/07/21 13:56:43",
+      "authority": "org:update",
+      "checked": 0,
+      "updateTime": "2018/07/21 13:56:43",
+      "isMenu": 0,
+      "parentId": 20,
+      "open": true
+    },
+    {
+      "authorityId": 24,
+      "authorityName": "删除机构",
+      "orderNumber": 24,
+      "menuUrl": "",
+      "menuIcon": "",
+      "createTime": "2018/07/21 13:56:43",
+      "authority": "org:del",
+      "checked": 0,
+      "updateTime": "2018/07/21 13:56:43",
+      "isMenu": 0,
+      "parentId": 20,
+      "open": true
+    }
+  ]
+		
+		var $ = layui.jquery;
+        var treeTable = layui.treeTable;
+
+        // 渲染树形表格
+        var insTb = treeTable.render({
+            elem: '#demoTreeTb',
+            //url: 'json/menus.json',
+            data:data,
+			tree: {
+                iconIndex: 2,           // 折叠图标显示在第几列
+                isPidData: true,        // 是否是id、pid形式数据
+                idName: 'authorityId',  // id字段名称
+                pidName: 'parentId'     // pid字段名称
+            },
+            cols: [[
+                {type: 'numbers'},
+                {type: 'checkbox'},
+                {field: 'authorityName', title: '菜单名称'},
+                {field: 'menuUrl', title: '菜单地址'},
+                {field: 'authority', title: '权限标识'}
+            ]]
+        });
+
+    });
+  </script>
+</body>
+
+</html>
